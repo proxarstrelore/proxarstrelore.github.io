@@ -1,7 +1,18 @@
+:root {
+    --h1-font-size: 32px;
+    --link-box-height: 60px; /* only even numbers */
+    --main-color: olivedrab;
+    --dark-color: #141414;
+    --bright-color: white;
+    --hover-color: crimson;
+    --general-gap: 50px;
+    --padding-small: 10px;
+}
+
 * {
     margin: 0;
     padding: 0;
-    color: black;
+    color: var(--bright-color);
     font-family: Verdana;
     text-decoration: none;
     font-size: 16px;
@@ -11,11 +22,30 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #141414;
+    flex-direction: column;
+    gap: var(--general-gap);
+    padding-top: var(--general-gap);
+    padding-bottom: var(--general-gap);
+    background-color: var(--dark-color);
 }
 
 h1 {
-    margin: 100px;
-    font-size: 32px;
-    color: white;
+    font-size: var(--h1-font-size);
+}
+
+.button_general {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--dark-color);
+    height: var(--link-box-height);
+    border-radius: var(--link-box-height);
+    padding-left: calc(var(--link-box-height) / 2);
+    padding-right: calc(var(--link-box-height) / 2);
+    background-color: var(--main-color);
+}
+
+.button_general:hover {
+    background-color: var(--hover-color);
+    cursor: pointer;
 }
