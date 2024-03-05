@@ -1,0 +1,67 @@
+table {
+    border-collapse: collapse;
+}
+
+table td {
+    white-space: nowrap;
+}
+
+th {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid var(--dark-color);
+    background-color: #424242;
+}
+
+td {
+    color: var(--dark-color);
+    padding: 10px;
+    text-align: left;
+    border: 1px solid var(--dark-color);
+    background-color: rgb(190, 138, 42);
+}
+
+thead th{
+    position: sticky;
+    top: 0;
+}
+
+tbody th{
+    position: sticky;
+    left: 0;
+}
+
+tr:nth-child(even) td{
+    background-color: #9e9e9e;
+}
+
+.top_left_transparent {
+    border: 1px solid transparent;
+    background-color: transparent;
+}
+
+.top_left_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 55px;
+    height: 64px;
+    background-color: var(--dark-color);
+}
+
+tr:nth-child(33) td{
+    background-color: rgb(77, 138, 77);
+}
+
+.list_swiss_passes_bottom_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: var(--general-gap);
+}
+
+/*
+tr:nth-child(1) td{
+    background-color: rgb(77, 138, 77);
+}
+*/
