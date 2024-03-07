@@ -1,14 +1,11 @@
 table {
     border-collapse: collapse;
-}
-
-table td {
+    text-align: left;
     white-space: nowrap;
 }
 
 th {
     padding: 10px;
-    text-align: center;
     border: 1px solid var(--dark-color);
     background-color: #424242;
 }
@@ -16,9 +13,8 @@ th {
 td {
     color: var(--dark-color);
     padding: 10px;
-    text-align: left;
     border: 1px solid var(--dark-color);
-    background-color: rgb(190, 138, 42);
+    background-color: rgb(79, 142, 238);
 }
 
 thead th{
@@ -40,17 +36,40 @@ tr:nth-child(even) td{
     background-color: transparent;
 }
 
+.test {
+    width: 40px;
+    height: 50px;
+}
+
 .top_left_overlay {
     position: fixed;
     top: 0;
     left: 0;
-    width: 55px;
-    height: 64px;
+    width: 60px;
+    height: 70px;
+    border: 1px solid var(--dark-color);
     background-color: var(--dark-color);
 }
 
 tr:nth-child(33) td{
     background-color: rgb(77, 138, 77);
+}
+
+.link_in_table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--dark-color);
+    height: 36px;
+    border-radius: 36px;
+    padding-left: 18px;
+    padding-right: 18px;
+    background-color: var(--main-color);
+}
+
+.link_in_table:hover {
+    background-color: var(--hover-color);
+    cursor: pointer;
 }
 
 .list_swiss_passes_bottom_button {
