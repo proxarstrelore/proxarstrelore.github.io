@@ -1,12 +1,20 @@
 :root {
     --h1-font-size: 32px;
     --link-box-height: 60px; /* only even numbers */
+    --general-gap: 50px;
+    --padding-small: 10px;
+
+    /* General Colors */
     --main-color: olivedrab;
     --dark-color: #141414;
     --bright-color: #e0e0e0;
     --hover-color: crimson;
-    --general-gap: 50px;
-    --padding-small: 10px;
+    /* Table Colors */
+    --table-header-color: #424242;
+    --table-light-color: #b69c48;
+    --table-dark-color: rgb(190, 138, 42);
+    --table-button-color: rgb(81, 123, 172);
+    --table-ok-color: rgb(77, 138, 77);
 }
 
 * {
@@ -22,7 +30,13 @@ body {
     background-color: var(--dark-color);
 }
 
-.link_page {
+h1 {
+    font-size: var(--h1-font-size);
+    padding-left: var(--padding-small);
+    padding-right: var(--padding-small);
+}
+
+.link_container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,10 +47,14 @@ body {
     background-color: var(--dark-color);
 }
 
-h1 {
-    font-size: var(--h1-font-size);
+.footer {
+    width: 90%;
 }
 
+
+
+
+/* BUTTON GENERAL */
 .button_general {
     display: flex;
     justify-content: center;
@@ -52,4 +70,59 @@ h1 {
 .button_general:hover {
     background-color: var(--hover-color);
     cursor: pointer;
+}
+
+.button_general_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: var(--general-gap);
+}
+
+
+
+
+/* LINK BOXES */
+.link_boxes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: calc(var(--link-box-height) / 2);
+    width: 80%;
+    max-width: 500px;
+}
+
+.link_box {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    height: var(--link-box-height);
+    border-radius: var(--link-box-height);
+    background-color: var(--main-color);
+}
+
+.link_box:hover {
+    background-color: var(--hover-color);
+    cursor: pointer;
+}
+
+.link_box_content_left {
+    display: flex;
+    align-items: center;
+    width: calc(var(--link-box-height) / 2);
+    height: calc(var(--link-box-height) / 2);
+    margin-left: calc(var(--link-box-height) / 2);
+}
+
+.link_box_icon {
+    width: 100%;
+    height: auto;
+}
+
+.link_box_content_right {
+    color: var(--dark-color);
+    margin-left: calc(var(--link-box-height) / 2);
+    margin-right: calc(var(--link-box-height) / 2);
 }
