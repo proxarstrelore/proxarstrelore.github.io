@@ -5,17 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/general.css">
-    <link rel="stylesheet" href="styles/link_page.css">
     <link rel="shortcut icon" type="image/png" href="resources/images/favicon/favicon.png">
     <title>Proxar Strelore</title>
+    <style>
+        .profile_picture_main_page {
+            width: 50%;
+            max-width: 300px;
+            border-radius: 50%;
+        }
+    </style>
 </head>
 
-<body class="link_page">
-    <div class="header_front_page">
-        <h1>Proxar Strelore</h1>
-    </div>
+<body class="link_container">
+    <h1>Proxar Strelore</h1>
 
-    <img src="resources/images/profile_picture/profile_picture.jpg" class="profile_picture_front_page" alt="Profile picture">
+    <img src="resources/images/profile_picture/profile_picture.jpg" class="profile_picture_main_page" alt="Profile picture">
 
     <div class="link_boxes">
         <a href="https://www.youtube.com/@ProxarStrelore" class="link_box" target="_blank">
@@ -51,6 +55,12 @@
             </div>
         </a>
     </div>
+
+    <div include-html="pages/footer.html" class="footer"></div>
+
+    <script src="js/includeHTML.js"></script>
+    <script>includeHTML();</script>
+
 </body>
- 
+
 </html>
