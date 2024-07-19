@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/general.css">
+    <link rel="shortcut icon" type="image/png" href="../resources/images/favicon/favicon.png">
+    <title>Proxar Strelore</title>
+    <style>
+        #dropdown, #textInput {
+            width: 60px;
+            padding: 8px;
+            color: var(--dark-color);
+        }
+        #download-button {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        #image-container {
+            width: 80%;
+            max-width: 300px;
+        }
+        #message {
+            color: rgb(199, 54, 54);
+        }
+        .form_container {
+            width: 200px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .numberplate {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding-top: var(--general-gap);
+            padding-bottom: var(--general-gap);
+            gap: 30px;
+            background-color: var(--dark-color);
+        }
+        .moin {
+            max-width: 500px;
+            padding-left: var(--padding-small);
+            padding-right: var(--padding-small);
+        }
+        .numberplate_insta_link {
+            text-decoration: underline;
+            color: var(--link-color);
+        }
+    </style>
+</head>
+
+<body class="numberplate">
+
+    <h1>Töff Schild Generator</h1>
+
+    <div class="moin">
+        Dieser Töff Schild Generator ist kostenlos. Die generierten Bilder besitzen keine Wasserzeichen und können in voller Auflösung heruntergeladen werden. Ebenso ist auf dieser Webseite keine Werbung vorhanden und es findet kein User-Tracking statt. Enjoy. Wer mag kann mir sehr gerne auf Instagram folgen: <a href="https://www.instagram.com/proxarstrelore" class="numberplate_insta_link" target="_blank">proxarstrelore</a>
+    </div>
+
+    <div class="form_container">
+        <p>Kanton:</p>
+        <select id="dropdown">
+            <option value="AG">AG</option>
+            <option value="AI">AI</option>
+            <option value="AR">AR</option>
+            <option value="BE">BE</option>
+            <option value="BL">BL</option>
+            <option value="BS">BS</option>
+            <option value="FR">FR</option>
+            <option value="GE">GE</option>
+            <option value="GL">GL</option>
+            <option value="GR">GR</option>
+            <option value="JU">JU</option>
+            <option value="LU">LU</option>
+            <option value="NE">NE</option>
+            <option value="NW">NW</option>
+            <option value="OW">OW</option>
+            <option value="SG">SG</option>
+            <option value="SH">SH</option>
+            <option value="SO">SO</option>
+            <option value="SZ">SZ</option>
+            <option value="TG">TG</option>
+            <option value="TI">TI</option>
+            <option value="UR">UR</option>
+            <option value="VD">VD</option>
+            <option value="VS">VS</option>
+            <option value="ZG">ZG</option>
+            <option value="ZH">ZH</option>
+        </select>
+    </div>
+
+    <div class="form_container">
+        <p>Text:</p>
+        <input type="text" id="textInput" maxlength="5">
+    </div>
+
+    <div class="moin">
+        <div id="message"></div>
+    </div>
+
+    <button class="button_general" onclick="fetchImage()">Schild generieren</button>
+
+    <div id="image-container"></div>
+
+    <a id="download-button" class="button_general" download="fetched_image.png" disabled>Download</a>
+
+    <a href="legal_notice_numberplate.html" class="button_general">Rechtliche Hinweise</a>
+
+    <a href="other_stuff.html" class="button_general">Zurück</a>
+
+
+
+
+
+    <script>
+        async function fetchImage() {
+            const selectedOption = document.getElementById('dropdown').value;
+            const enteredText = document.getElementById('textInput').value;
+            const messageElement = document.getElementById('message');
+            messageElement.textContent = ''; // Clear any previous message
+
+            const apiUrl = `https://jokermoto.pythonanywhere.com/genplate?canton=${selectedOption}&text=${encodeURIComponent(enteredText)}`;
+
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const blob = await response.blob();
+                const imageUrl = URL.createObjectURL(blob);
+
+                // Display the image
+                const imageContainer = document.getElementById('image-container');
+                imageContainer.innerHTML = `<img src="${imageUrl}" id="fetched-image" alt="Fetched Image" style="max-width: 100%;">`;
+
+                // Enable the download button
+                const downloadButton = document.getElementById('download-button');
+                downloadButton.href = imageUrl;
+                downloadButton.style.pointerEvents = 'auto';
+                downloadButton.style.opacity = '1';
+            } catch (error) {
+                console.error('Error fetching image:', error);
+                messageElement.textContent = 'Error. Mögliche Fehlerquellen: Das Textfeld ist leer oder es wurden nicht erlaubte Zeichen verwendet bei der Texteingabe oder es besteht ein Fehler beim Server.';
+            }
+        }
+    </script>
+</body>
+
+</html>
