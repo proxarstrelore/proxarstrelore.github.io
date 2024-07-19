@@ -106,7 +106,7 @@
 
     <div id="image-container"></div>
 
-    <a id="download-button" class="button_general" download="mointest.png" disabled>Download</a>
+    <a id="download-button" class="button_general" disabled>Download</a>
 
     <a href="legal_notice_numberplate.html" class="button_general">Rechtliche Hinweise</a>
 
@@ -117,6 +117,17 @@
 
 
     <script>
+        function getFormattedDateTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            return `${year}-${month}-${day}_${hours}-${minutes}-${seconds}`;
+        }
+
         async function fetchImage() {
             const selectedOption = document.getElementById('dropdown').value;
             const enteredText = document.getElementById('textInput').value;
@@ -133,6 +144,9 @@
                 const blob = await response.blob();
                 const imageUrl = URL.createObjectURL(blob);
 
+                const formattedDateTime = getFormattedDateTime();
+                const filename = `${formattedDateTime}_${selectedOption}.png`;
+
                 // Display the image
                 const imageContainer = document.getElementById('image-container');
                 imageContainer.innerHTML = `<img src="${imageUrl}" id="fetched-image" alt="Fetched Image" style="max-width: 100%;">`;
@@ -140,6 +154,7 @@
                 // Enable the download button
                 const downloadButton = document.getElementById('download-button');
                 downloadButton.href = imageUrl;
+                downloadButton.download = filename;
                 downloadButton.style.pointerEvents = 'auto';
                 downloadButton.style.opacity = '1';
             } catch (error) {
